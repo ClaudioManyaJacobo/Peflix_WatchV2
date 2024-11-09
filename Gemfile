@@ -6,6 +6,11 @@ ruby "3.3.6"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.8", ">= 7.0.8.6"
 
+# Incluir base de datos SQL SERVER
+gem 'tiny_tds'
+gem 'activerecord-sqlserver-adapter'
+
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
