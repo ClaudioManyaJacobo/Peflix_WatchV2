@@ -1,0 +1,21 @@
+<h1>Películas</h1>
+
+<div class="peliculas-container">
+  <% @peliculas.each do |pelicula| %>
+    <div class="pelicula-item">
+      <h3><%= pelicula.titulo %></h3>
+
+      <% if pelicula.foto.attached? %>
+        <div class="pelicula-img-container">
+          <%= link_to pelicula_path(pelicula) do %>
+            <%= image_tag pelicula.foto, class: "pelicula-img" %>
+          <% end %>
+        </div>
+      <% end %> 
+    </div>
+  <% end %>
+
+  <div class="add-pelicula">
+    <%= link_to 'Agregar Nueva Película', new_pelicula_path, class: 'add-button' %>
+  </div>
+</div>

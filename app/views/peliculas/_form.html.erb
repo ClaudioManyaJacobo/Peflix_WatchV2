@@ -1,0 +1,41 @@
+<%= form_with(model: pelicula, local: true) do |form| %>
+    <div class="field">
+      <%= form.label :titulo %>
+      <%= form.text_field :titulo %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :anio %>
+      <%= form.number_field :anio %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :sinopsis %>
+      <%= form.text_area :sinopsis %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :duracion %>
+      <%= form.number_field :duracion %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :director %>
+      <%= form.text_field :director %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :foto %>
+      <%= form.file_field :foto %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :video %>
+      <%= form.file_field :video %>
+    </div>
+  
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+  
