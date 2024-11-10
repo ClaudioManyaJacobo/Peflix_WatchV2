@@ -6,6 +6,13 @@
     <p><strong>Sinopsis:</strong> <%= @pelicula.sinopsis %></p>
     <p><strong>Duración:</strong> <%= @pelicula.duracion %> minutos</p>
     <p><strong>Director:</strong> <%= @pelicula.director %></p>
+
+    <p><strong>Géneros:</strong>
+    <% @pelicula.generos.each do |genero| %>
+      <span><%= genero.nombre %></span><% if genero != @pelicula.generos.last %>, <% end %>
+    <% end %>
+    </p>
+
   </div>
 
   <% if @pelicula.foto.attached? %>
@@ -21,6 +28,8 @@
       <%= video_tag url_for(@pelicula.video), controls: true, class: 'pelicula-video-tag' %>
     </div>
   <% end %>
+
+
 </div>
 
 <%= link_to 'Editar', edit_pelicula_path(@pelicula), class: 'btn btn-warning' %>
@@ -29,4 +38,3 @@
 <% end %>
 
 <%= link_to 'Salir', peliculas_path, class: 'salir-button' %>
-

@@ -38,6 +38,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :genero_ids, "Géneros" %>
+    <%= form.collection_select :genero_ids, Genero.all, :id, :nombre, { prompt: "Selecciona géneros" }, { multiple: true } %>
+  </div>
+
+  <div class="field">
     <%= form.label :foto %>
     <%= form.file_field :foto %>
   </div>

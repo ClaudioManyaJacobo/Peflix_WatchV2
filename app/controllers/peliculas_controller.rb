@@ -51,8 +51,9 @@ class PeliculasController < ApplicationController
 
   # Definir los parámetros permitidos para crear o actualizar una película
   def pelicula_params
-    params.require(:pelicula).permit(:titulo, :anio, :sinopsis, :duracion, :director, :foto, :video)
+    params.require(:pelicula).permit(:titulo, :anio, :sinopsis, :duracion, :director, :foto, :video, genero_ids: [])
   end
+  
 
   # Cargar la película por ID
   def set_pelicula

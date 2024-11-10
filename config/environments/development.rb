@@ -59,6 +59,10 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+  # Usar Ngrok en mi proyecto Rails
+  config.hosts.clear # Limpiar cualquier restricción de hosts
+  config.hosts << "localhost:3000"
+  config.hosts << /[a-z0-9-]+\.ngrok-free\.app/ # Aceptar cualquier subdominio ngrok
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
