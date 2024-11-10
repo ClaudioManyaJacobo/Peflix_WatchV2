@@ -1,0 +1,9 @@
+.logo {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 100px;  /* Ajusta según el tamaño adecuado */
+    height: auto;  /* Mantiene la proporción */
+    max-width: 100%;  /* Evita que el logo se deforme si es muy grande */
+}
+

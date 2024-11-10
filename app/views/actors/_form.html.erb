@@ -1,0 +1,16 @@
+<%= form_with model: @actor do |form| %>
+    <% @actor.errors.full_messages.each do |message| %>
+        <p style="color: red;"><%= message %></p>
+    <% end %>
+
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+
+  <%= form.label :url_actor %>
+  <%= form.text_field :url_actor %>
+<div>
+  <%= form.label :photo_actor %>
+  <%= form.file_field :photo_actor %>
+</div>
+  <%= form.submit %>
+<% end %>

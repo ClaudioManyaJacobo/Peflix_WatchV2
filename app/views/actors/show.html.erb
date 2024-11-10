@@ -1,0 +1,8 @@
+<h1><%= @actor.name %></h1>
+<p><%= @actor.url_actor %></p>
+
+<%= image_tag @actor.photo_actor, alt: "Foto de #{@actor.name}", class: "actor-photo", width: 200 %>
+
+<%= link_to 'Editar', edit_actor_path(@actor) %>
+<%= link_to 'Volver', actors_path %>
+<%= button_to 'Eliminar', actor_path(@actor), method: :delete, data: { confirm: "¿Estás seguro de eliminar a #{@actor.name}?" } %>
