@@ -1,0 +1,5 @@
+<%= link_to actor_path(actor.id) do %>
+    <h2><%=actor.name%></h2> 
+<%end%>
+<p><%=actor.url_actor%></p>
+<%= image_tag actor.photo_actor, alt: "Foto de #{actor.name}", class: "actor-photo", width: 200 %>

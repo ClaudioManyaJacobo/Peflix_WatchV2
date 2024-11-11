@@ -1,0 +1,8 @@
+<%= link_to plataform_path (plataform.id), class: 'plataform' do %>
+    <h2><%= plataform.name_p %></h2>
+<%end%>
+      
+    <p><%= plataform.url_p %></p>
+    <p><%= plataform.tipo_p %></p>
+    <%= image_tag plataform.photo_plataform, width: 100 if plataform.photo_plataform.attached?  %>
+  

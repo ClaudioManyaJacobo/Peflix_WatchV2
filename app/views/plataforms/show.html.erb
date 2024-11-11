@@ -1,0 +1,12 @@
+<h1><%=  @plataform.name_p %></h1>
+<%= image_tag @plataform.photo_plataform,width: 200 if @plataform.photo_plataform.attached? %>
+
+<p><%= "URL: #{@plataform.url_p}" %></p>
+<p><%= "Plataforma: #{@plataform.tipo_p}" %></p>
+
+<%= link_to 'Editar', edit_plataform_path(@plataform) %>
+<%= link_to 'Eliminar', plataform_path(@plataform), data: { 
+    turbo_method: :delete,
+    turbo_confirm: "¿Estás seguro de que quieres eliminar esta plataforma?"
+} %>
+<%= link_to 'Salir', plataforms_path %>

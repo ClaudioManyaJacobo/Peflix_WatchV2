@@ -36,6 +36,11 @@
     <%= form.text_field :director, class: 'form-control' %>
   </div>
 
+  <div class="field">
+    <%= form.label :actor_ids, "Actores" %>
+    <%= form.collection_select :actor_ids, Actor.all, :id, :name, { prompt: "Selecciona Actores" }, { multiple: true } %>
+  </div>
+
   <div class="form-group">
     <%= form.label :foto %>
     <%= form.file_field :foto, class: 'form-control' %>

@@ -42,6 +42,12 @@
     <%= form.collection_select :genero_ids, Genero.all, :id, :nombre, { prompt: "Selecciona géneros" }, { multiple: true } %>
   </div>
 
+  <!-- Campo de selección múltiple para actores -->
+  <div class="field">
+    <%= form.label :actor_ids, "Actores" %>
+    <%= form.collection_select :actor_ids, Actor.all, :id, :name, { prompt: "Selecciona Actores" }, { multiple: true } %>
+  </div>
+
   <div class="field">
     <%= form.label :foto %>
     <%= form.file_field :foto %>
@@ -56,5 +62,5 @@
     <%= form.submit %>
   </div>
 
-    <%= link_to 'Salir', peliculas_path %>
+  <%= link_to 'Salir', peliculas_path %>
 <% end %>

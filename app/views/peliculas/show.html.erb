@@ -13,22 +13,36 @@
     <% end %>
     </p>
 
+    <p><strong>CAST:</strong>
+    <% @pelicula.actors.each do |actor| %>
+      <div class="actor-info">
+        <!-- MOSTRAR FOTO DE CADA ACTOR -->
+        <% if actor.photo_actor.attached? %>
+          <%= image_tag actor.photo_actor, class: 'actor-photo', size: '50x50' %> <!-- Tamaño pequeño de 50x50px -->
+        <% end %>
+
+        <!-- NAME FOR ACTOR -->
+        <span><%= actor.name %></span>
+        
+        <% if actor != @pelicula.actors.last %>
+          <span> </span>
+        <% end %>
+      </div>
+    <% end %>
+    </p>
   </div>
 
   <% if @pelicula.foto.attached? %>
     <div class="pelicula-image">
-      
       <%= image_tag @pelicula.foto, class: 'pelicula-img' %>
     </div>
   <% end %>
 
   <% if @pelicula.video.attached? %>
     <div class="pelicula-video">
-      
       <%= video_tag url_for(@pelicula.video), controls: true, class: 'pelicula-video-tag' %>
     </div>
   <% end %>
-
 
 </div>
 

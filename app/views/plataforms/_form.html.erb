@@ -1,0 +1,31 @@
+<%= form_with model: @plataform do |form| %>
+    <% @plataform.errors.full_messages.each do |message| %>
+        <div>
+            <p><%= message %></p>
+        </div>
+    <% end %>
+   <div> 
+        <%= form.label :name_p %>
+        <%= form.text_field :name_p %>
+    </div>
+
+    <div>
+        <%= form.label :url_p %>
+        <%= form.text_field :url_p %>
+    </div>
+
+    <div>
+        <%= form.label :tipo_p %>
+        <%= form.text_field :tipo_p %>
+    </div>
+
+    <div>
+        <%= form.label :photo_plataform %>
+        <%= form.file_field :photo_plataform %>
+    </div>
+
+
+    <%= form.submit %>
+
+    <%= link_to 'Salir', plataforms_path %>
+<%end%>    

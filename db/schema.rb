@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_11_10_202856) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_11_024630) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -46,6 +46,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_10_202856) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "actors_peliculas", id: false, force: :cascade do |t|
+    t.bigint "actor_id", null: false
+    t.bigint "pelicula_id", null: false
+    t.index ["actor_id", "pelicula_id"], name: "index_actors_peliculas_on_actor_id_and_pelicula_id"
+    t.index ["pelicula_id", "actor_id"], name: "index_actors_peliculas_on_pelicula_id_and_actor_id"
+  end
+
   create_table "generos", force: :cascade do |t|
     t.string "nombre"
     t.datetime "created_at", null: false
@@ -69,6 +76,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_10_202856) do
     t.datetime "updated_at", null: false
     t.string "foto"
     t.string "video"
+  end
+
+  create_table "plataforms", force: :cascade do |t|
+    t.string "name_p"
+    t.string "url_p"
+    t.string "tipo_p"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

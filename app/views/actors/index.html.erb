@@ -1,12 +1,4 @@
 <h1>Actores Disponibles</h1>
-
 <%= link_to "Agregar Actor", new_actor_path %>
-<%@actors.each do |actor|%>
-    <%= link_to actor_path(actor.id) do %>
-         <h2><%=actor.name%></h2>
-         
-    <%end%>
-    <p><%=actor.url_actor%></p>
-    <%= image_tag actor.photo_actor, alt: "Foto de #{actor.name}", class: "actor-photo", width: 200 %>
 
-<%end%>
+<%= render partial: 'actor', collection: @actors %>
