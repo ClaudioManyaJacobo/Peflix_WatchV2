@@ -1,42 +1,63 @@
-<%= form_with(model: pelicula, local: true) do |form| %>
-    <div class="field">
-      <%= form.label :titulo %>
-      <%= form.text_field :titulo %>
-    </div>
-  
-    <div class="field">
-      <%= form.label :anio %>
-      <%= form.number_field :anio %>
-    </div>
-  
-    <div class="field">
-      <%= form.label :sinopsis %>
-      <%= form.text_area :sinopsis %>
-    </div>
-  
-    <div class="field">
-      <%= form.label :duracion %>
-      <%= form.number_field :duracion %>
-    </div>
-  
-    <div class="field">
-      <%= form.label :director %>
-      <%= form.text_field :director %>
-    </div>
-
-  
-    <div class="field">
-      <%= form.label :foto %>
-      <%= form.file_field :foto %>
-    </div>
-  
-    <div class="field">
-      <%= form.label :video %>
-      <%= form.file_field :video %>
-    </div>
-  
-    <div class="actions">
-      <%= form.submit %>
+<%= form_with model: @pelicula, local: true do |form| %>
+  <% if @pelicula.errors.any? %>
+    <div class="errors">
+      <ul>
+        <% @pelicula.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
   <% end %>
-  
+
+  <div class="form-group">
+    <%= form.label :titulo %>
+    <%= form.text_field :titulo, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :anio %>
+    <%= form.number_field :anio, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :sinopsis %>
+    <%= form.text_area :sinopsis, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :duracion %>
+    <%= form.number_field :duracion, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :director %>
+    <%= form.text_field :director, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :genero_ids, "Generos" %>
+    <%= form.collection_select :genero_ids, Genero.all, :id, :nombre, { prompt: "Selecciona Generos" }, { multiple: true } %>
+  </div>
+
+  <div class="field">
+    <%= form.label :plataform_id, "Platafromas" %>
+    <%= form.collection_select :plataform_id, Plataform.all, :id, :name_p, { prompt: "Selecciona Generos" }, { multiple: true } %>
+  </div>
+
+  <div class="field">
+    <%= form.label :actor_ids, "Actores" %>
+    <%= form.collection_select :actor_ids, Actor.all, :id, :name, { prompt: "Selecciona Actores" }, { multiple: true } %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :foto %>
+    <%= form.file_field :foto, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :video %>
+    <%= form.file_field :video, class: 'form-control' %>
+  </div>
+
+  <%= form.submit %>
+<% end %>

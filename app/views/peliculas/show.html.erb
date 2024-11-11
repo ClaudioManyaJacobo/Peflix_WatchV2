@@ -16,16 +16,27 @@
     <p><strong>CAST:</strong>
     <% @pelicula.actors.each do |actor| %>
       <div class="actor-info">
-        <!-- MOSTRAR FOTO DE CADA ACTOR -->
         <% if actor.photo_actor.attached? %>
-          <%= image_tag actor.photo_actor, class: 'actor-photo', size: '50x50' %> <!-- Tamaño pequeño de 50x50px -->
+          <%= image_tag actor.photo_actor, class: 'actor-photo', size: '50x50' %>
         <% end %>
-
-        <!-- NAME FOR ACTOR -->
         <span><%= actor.name %></span>
-        
         <% if actor != @pelicula.actors.last %>
           <span> </span>
+        <% end %>
+      </div>
+    <% end %>
+    </p>
+
+    <!-- Nueva sección para plataformas -->
+    <p><strong>Plataformas:</strong>
+    <% @pelicula.plataforms.each do |plataforma| %>
+      <div class="plataforma-info">
+        <% if plataforma.photo_plataform.attached? %>
+          <%= image_tag plataforma.photo_plataform, class: 'plataform-photo', size: '50x50' %>
+        <% end %>
+        <span><%= plataforma.name_p %> - <%= plataforma.url_p %></span>
+        <% if plataforma != @pelicula.plataforms.last %>
+          <span>, </span>
         <% end %>
       </div>
     <% end %>
@@ -43,7 +54,6 @@
       <%= video_tag url_for(@pelicula.video), controls: true, class: 'pelicula-video-tag' %>
     </div>
   <% end %>
-
 </div>
 
 <%= link_to 'Editar', edit_pelicula_path(@pelicula), class: 'btn btn-warning' %>
@@ -52,3 +62,4 @@
 <% end %>
 
 <%= link_to 'Salir', peliculas_path, class: 'salir-button' %>
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_11_11_024630) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_11_041814) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -76,6 +76,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_11_024630) do
     t.datetime "updated_at", null: false
     t.string "foto"
     t.string "video"
+  end
+
+  create_table "peliculas_plataforms", id: false, force: :cascade do |t|
+    t.bigint "plataform_id", null: false
+    t.bigint "pelicula_id", null: false
+    t.index ["pelicula_id", "plataform_id"], name: "index_peliculas_plataforms_on_pelicula_id_and_plataform_id"
+    t.index ["plataform_id", "pelicula_id"], name: "index_peliculas_plataforms_on_plataform_id_and_pelicula_id"
   end
 
   create_table "plataforms", force: :cascade do |t|
