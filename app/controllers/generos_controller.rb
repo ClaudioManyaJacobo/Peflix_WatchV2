@@ -22,7 +22,7 @@ class GenerosController < ApplicationController
       if @genero.save
         redirect_to @genero, notice: 'Género creado con éxito.'
       else
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
   
@@ -35,7 +35,7 @@ class GenerosController < ApplicationController
       if @genero.update(genero_params)
         redirect_to @genero, notice: 'Género actualizado con éxito.'
       else
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
   

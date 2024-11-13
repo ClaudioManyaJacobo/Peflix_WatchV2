@@ -18,7 +18,7 @@ class PeliculasController < ApplicationController
       if @pelicula.save
         redirect_to @pelicula, notice: 'Película creada con éxito.'
       else
-        render :new
+      render :new, status: :unprocessable_entity
       end
     end
   
@@ -37,7 +37,7 @@ class PeliculasController < ApplicationController
       if @pelicula.update(pelicula_params)
         redirect_to @pelicula, notice: 'Película actualizada exitosamente.'
       else
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
   

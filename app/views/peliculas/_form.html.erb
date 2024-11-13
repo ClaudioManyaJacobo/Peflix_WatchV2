@@ -1,14 +1,10 @@
 <%= form_with model: @pelicula, local: true do |form| %>
-  <% if @pelicula.errors.any? %>
-    <div class="errors">
-      <ul>
-        <% @pelicula.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+  <%@pelicula.errors.full_messages.each do |msg| %>
+    <div>
+      <%= msg %>
     </div>
   <% end %>
-
+  
   <div class="form-group">
     <%= form.label :titulo %>
     <%= form.text_field :titulo, class: 'form-control' %>
@@ -40,8 +36,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :plataform_id, "Platafromas" %>
-    <%= form.collection_select :plataform_id, Plataform.all, :id, :name_p, { prompt: "Selecciona Generos" }, { multiple: true } %>
+    <%= form.label :plataform_ids, "Platafromas" %>
+    <%= form.collection_select :plataform_ids, Plataform.all, :id, :name_p, { prompt: "Selecciona Generos" }, { multiple: true } %>
   </div>
 
   <div class="field">

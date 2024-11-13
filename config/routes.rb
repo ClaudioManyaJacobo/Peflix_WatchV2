@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   resources :generos
   resources :actors
   resources :plataforms
+
+  root 'peliculas#index'
 end

@@ -1,19 +1,19 @@
-# Conexion a la base de datos
 default: &default
   adapter: sqlserver
-  username: sa
-  password: GrupoPeliculizate#0112
-  host: 172.22.15.132
-  database: peliculizate_DB     
+  username: db_aaf452_peliswatch_admin
+  password: "teamoariel0112"
+  host: SQL9001.site4now.net
+  database: db_aaf452_peliswatch
+  encoding: utf8
 
 development:
   <<: *default
-  database: peliculizate_Dev
+  database: db_aaf452_peliswatch
 
 test:
   <<: *default
-  database: peliculizate_Test
+  database: db_aaf452_peliswatch
 
 production:
   <<: *default
-  database: peliculizate_Prod
+  database: db_aaf452_peliswatch
