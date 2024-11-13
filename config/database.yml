@@ -1,19 +1,19 @@
 default: &default
   adapter: sqlserver
-  username: db_aaf452_peliswatch_admin
-  password: "teamoariel0112"
-  host: SQL9001.site4now.net
-  database: db_aaf452_peliswatch
+  username: sa
+  password: "GrupoPeliculizate#0112"
+  host: 172.22.15.132
+  database: peliswatch_dev
   encoding: utf8
 
 development:
   <<: *default
-  database: db_aaf452_peliswatch
+  database: peliswatch_dev
 
 test:
   <<: *default
-  database: db_aaf452_peliswatch
+  database: peliswatch_test
 
 production:
   <<: *default
-  database: db_aaf452_peliswatch
+  database: peliswatch_prod

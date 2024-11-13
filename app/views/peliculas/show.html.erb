@@ -55,10 +55,11 @@
     </div>
   <% end %>
 </div>
-
-<%= link_to 'Editar', edit_pelicula_path(@pelicula), class: 'btn btn-warning' %>
-<%= form_with(model: @pelicula, method: :delete, local: true) do %>
-  <%= submit_tag 'Eliminar', class: 'btn btn-danger', data: { confirm: '¿Estás seguro de que deseas eliminar esta película?' } %>
+<% if admin_user? %>
+  <%= link_to 'Editar', edit_pelicula_path(@pelicula), class: 'btn btn-warning' %>
+  <%= form_with(model: @pelicula, method: :delete, local: true) do %>
+    <%= submit_tag 'Eliminar', class: 'btn btn-danger', data: { confirm: '¿Estás seguro de que deseas eliminar esta película?' } %>
+  <% end %>
 <% end %>
 
 <%= link_to 'Salir', peliculas_path, class: 'salir-button' %>

@@ -1,5 +1,7 @@
 <h1>Agregar Nueva Película</h1>
-
+<% if admin_user? %>
 <%= render 'form'%>
-
+<% else %>
+  <p>No tienes permiso para esto</p>
+<% end %>
 <%= link_to 'Salir', peliculas_path %>

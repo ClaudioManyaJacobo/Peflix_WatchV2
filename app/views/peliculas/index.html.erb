@@ -14,9 +14,9 @@
       <% end %> 
     </div>
   <% end %>
-
+<% if admin_user? %>
   <div class="add-pelicula">
     <%= link_to 'Agregar Nueva Película', new_pelicula_path, class: 'add-button' %>
   </div>
-  
+<% end %> 
 </div>
