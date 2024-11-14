@@ -6,45 +6,44 @@
     <p><strong>Sinopsis:</strong> <%= @pelicula.sinopsis %></p>
     <p><strong>Duración:</strong> <%= @pelicula.duracion %> minutos</p>
     <p><strong>Director:</strong> <%= @pelicula.director %></p>
-
     <p><strong>Géneros:</strong>
-    <% @pelicula.generos.each do |genero| %>
-      <span><%= genero.nombre %></span><% if genero != @pelicula.generos.last %>, <% end %>
-    <% end %>
-    </p>
 
+      <% @pelicula.generos.each do |genero| %>
+        <span><%= genero.nombre %></span><% if genero != @pelicula.generos.last %>, <% end %>
+      <% end %></p>
 
     <p><strong>CAST:</strong>
-    <div class="actor-list">
-    <% @pelicula.actors.each do |actor| %>
-        <div class="actor-info">
-          <% if actor.photo_actor.attached? %>
-            <%= image_tag actor.photo_actor, class: 'actor-photo', size: '50x50' %>
+      <div class="actor-list">
+        <% @pelicula.actors.each do |actor| %>
+          <div class="actor-info">
+            <% if actor.photo_actor.attached? %>
+              <%= image_tag actor.photo_actor, class: 'actor-photo', size: '50x50' %>
+            <% end %>
+              <span><%= actor.name %></span>
+            <% if actor != @pelicula.actors.last %>
+              <span> </span>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </p>
+
+    <p><strong>Plataformas:</strong>
+      <% @pelicula.plataforms.each do |plataforma| %>
+        <div class="plataforma-info">
+          <% if plataforma.photo_plataform.attached? %>
+            <%= image_tag plataforma.photo_plataform, class: 'plataform-photo', size: '50x50' %>
           <% end %>
-          <span><%= actor.name %></span>
-          <% if actor != @pelicula.actors.last %>
-            <span> </span>
+            <span><%= plataforma.name_p %> - <%= plataforma.url_p %></span>
+          <% if plataforma != @pelicula.plataforms.last %>
+            <span>, </span>
           <% end %>
         </div>
       <% end %>
-    </div>
     </p>
 
+    <p><strong>Valoración Promedio: </strong><%= @pelicula.average_rating || 'Sin valoraciones' %></p>
 
-    <!-- Nueva sección para plataformas -->
-    <p><strong>Plataformas:</strong>
-    <% @pelicula.plataforms.each do |plataforma| %>
-      <div class="plataforma-info">
-        <% if plataforma.photo_plataform.attached? %>
-          <%= image_tag plataforma.photo_plataform, class: 'plataform-photo', size: '50x50' %>
-        <% end %>
-        <span><%= plataforma.name_p %> - <%= plataforma.url_p %></span>
-        <% if plataforma != @pelicula.plataforms.last %>
-          <span>, </span>
-        <% end %>
-      </div>
-    <% end %>
-    </p>
   </div>
 
   <% if @pelicula.foto.attached? %>
@@ -58,15 +57,34 @@
       <%= video_tag url_for(@pelicula.video), controls: true, class: 'pelicula-video-tag' %>
     </div>
   <% end %>
+
+
+  <h2>Valorar esta película</h2>
+  <% if user_signed_in? %>
+    <% user_rating = @pelicula.ratings.find_by(user: current_user) || @pelicula.ratings.new %>
+    <%= form_with model: [@pelicula, user_rating], url: user_rating.persisted? ? pelicula_rating_path(@pelicula, user_rating) : pelicula_ratings_path(@pelicula), method: user_rating.persisted? ? :patch : :post, local: true do |form| %>
+    <div class="field">
+      <%= form.label :score, "Calificación (1-5)" %>
+      <%= form.number_field :score, in: 1..5, step: 1, value: user_rating.score %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit user_rating.persisted? ? "Actualizar" : "Enviar" %>
+    </div>
+  <% end %>
+  <% else %>
+    <p>Inicia sesión para valorar esta película.</p>
+  <% end %>
 </div>
 
 <div class="actions">
-<% if admin_user? %>
-  <%= link_to 'Editar', edit_pelicula_path(@pelicula), class: 'btn btn-edit' %>
-  <%= form_with(model: @pelicula, method: :delete, local: true) do %>
-    <%= submit_tag 'Eliminar', class: 'btn btn-delete', data: { confirm: '¿Estás seguro de que deseas eliminar esta película?' } %>
+  <% if admin_user? %>
+    <%= link_to 'Editar', edit_pelicula_path(@pelicula), class: 'btn btn-edit' %>
+    <%= form_with(model: @pelicula, method: :delete, local: true) do %>
+      <%= submit_tag 'Eliminar', class: 'btn btn-delete', data: { confirm: '¿Estás seguro de que deseas eliminar esta película?' } %>
+    <% end %>
   <% end %>
 
-<% end %>
-<%= link_to 'Salir', peliculas_path, class: 'salir-button' %>
+  <%= link_to 'Salir', peliculas_path, class: 'salir-button' %>
+
 </div>

@@ -6,4 +6,8 @@ Rails.application.routes.draw do
   resources :plataforms
 
   root 'peliculas#index'
+
+  resources :peliculas do
+    resources :ratings, only: [:create, :update]
+  end
 end

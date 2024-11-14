@@ -10,7 +10,15 @@ class Pelicula < ApplicationRecord
     has_and_belongs_to_many :actors
     has_and_belongs_to_many :plataforms
 
+    # Relacion pelicula y usuario y  raiting
+    has_many :ratings, dependent: :destroy
+    has_many :users, through: :ratings
+
     # Imágenes y videos - EQUI
     has_one_attached :foto
     has_one_attached :video
+
+    def average_rating
+        ratings.average(:score).to_f.round(1) if ratings.any?
+    end
 end
