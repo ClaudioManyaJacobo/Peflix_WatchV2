@@ -1,81 +1,122 @@
 <h1><%= @pelicula.titulo %></h1>
 
-<div class="pelicula-container">
-  <div class="pelicula-details">
-    <p><strong>Año:</strong> <%= @pelicula.anio %></p>
-    <p><strong>Sinopsis:</strong> <%= @pelicula.sinopsis %></p>
-    <p><strong>Duración:</strong> <%= @pelicula.duracion %> minutos</p>
-    <p><strong>Director:</strong> <%= @pelicula.director %></p>
-    <p><strong>Géneros:</strong>
+<div class="pelicula-details">
+  <p><strong>Año:</strong> <%= @pelicula.anio %></p>
+  <p><strong>Sinopsis:</strong> <%= @pelicula.sinopsis %></p>
+  <p><strong>Duración:</strong> <%= @pelicula.duracion %> minutos</p>
+  <p><strong>Director:</strong> <%= @pelicula.director %></p>
+  <p><strong>Géneros:</strong>
 
-      <% @pelicula.generos.each do |genero| %>
-        <span><%= genero.nombre %></span><% if genero != @pelicula.generos.last %>, <% end %>
-      <% end %></p>
+    <% @pelicula.generos.each do |genero| %>
+      <span><%= genero.nombre %></span><% if genero != @pelicula.generos.last %>, <% end %>
+    <% end %></p>
 
-    <p><strong>CAST:</strong>
-      <div class="actor-list">
-        <% @pelicula.actors.each do |actor| %>
-          <div class="actor-info">
-            <% if actor.photo_actor.attached? %>
-              <%= image_tag actor.photo_actor, class: 'actor-photo', size: '50x50' %>
-            <% end %>
-              <span><%= actor.name %></span>
-            <% if actor != @pelicula.actors.last %>
-              <span> </span>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-    </p>
-
-    <p><strong>Plataformas:</strong>
-      <% @pelicula.plataforms.each do |plataforma| %>
-        <div class="plataforma-info">
-          <% if plataforma.photo_plataform.attached? %>
-            <%= image_tag plataforma.photo_plataform, class: 'plataform-photo', size: '50x50' %>
+  <p><strong>CAST:</strong>
+    <div class="actor-list">
+      <% @pelicula.actors.each do |actor| %>
+        <div class="actor-info">
+          <% if actor.photo_actor.attached? %>
+            <%= image_tag actor.photo_actor, class: 'actor-photo', size: '50x50' %>
           <% end %>
-            <span><%= plataforma.name_p %> - <%= plataforma.url_p %></span>
-          <% if plataforma != @pelicula.plataforms.last %>
-            <span>, </span>
+            <span><%= actor.name %></span>
+          <% if actor != @pelicula.actors.last %>
+            <span> </span>
           <% end %>
         </div>
       <% end %>
-    </p>
+    </div>
+  </p>
 
-    <p><strong>Valoración Promedio: </strong><%= @pelicula.average_rating || 'Sin valoraciones' %></p>
+  <p><strong>Plataformas:</strong>
+    <% @pelicula.plataforms.each do |plataforma| %>
+      <div class="plataforma-info">
+        <% if plataforma.photo_plataform.attached? %>
+          <%= image_tag plataforma.photo_plataform, class: 'plataform-photo', size: '50x50' %>
+        <% end %>
+          <span><%= plataforma.name_p %> - <%= plataforma.url_p %></span>
+        <% if plataforma != @pelicula.plataforms.last %>
+          <span>, </span>
+        <% end %>
+      </div>
+    <% end %>
+  </p>
 
+  <p><strong>Valoración Promedio: </strong><%= @pelicula.average_rating || 'Sin valoraciones' %></p>
+
+</div>
+
+<% if @pelicula.foto.attached? %>
+  <div class="pelicula-image">
+    <%= image_tag @pelicula.foto, class: 'pelicula-img' %>
   </div>
+<% end %>
 
-  <% if @pelicula.foto.attached? %>
-    <div class="pelicula-image">
-      <%= image_tag @pelicula.foto, class: 'pelicula-img' %>
-    </div>
-  <% end %>
-
-  <% if @pelicula.video.attached? %>
-    <div class="pelicula-video">
-      <%= video_tag url_for(@pelicula.video), controls: true, class: 'pelicula-video-tag' %>
-    </div>
-  <% end %>
+<% if @pelicula.video.attached? %>
+  <div class="pelicula-video">
+    <%= video_tag url_for(@pelicula.video), controls: true, class: 'pelicula-video-tag' %>
+  </div>
+<% end %>
 
 
-  <h2>Valorar esta película</h2>
-  <% if user_signed_in? %>
+<h2>Valorar esta película</h2>
+<% if user_signed_in? %>
+  <% if admin_user? %>
+    <p>Los administradores no pueden dar una valoración.</p>
+  <% else %>
     <% user_rating = @pelicula.ratings.find_by(user: current_user) || @pelicula.ratings.new %>
     <%= form_with model: [@pelicula, user_rating], url: user_rating.persisted? ? pelicula_rating_path(@pelicula, user_rating) : pelicula_ratings_path(@pelicula), method: user_rating.persisted? ? :patch : :post, local: true do |form| %>
+      <div class="field">
+        <%= form.label :score, "Calificación (1-5)" %>
+        <%= form.number_field :score, in: 1..5, step: 1, value: user_rating.score %>
+      </div>
+      <div class="actions">
+        <%= form.submit user_rating.persisted? ? "Actualizar" : "Enviar" %>
+      </div>
+    <% end %>
+  <% end %>
+<% else %>
+  <p>Inicia sesión para valorar esta película.</p>
+<% end %>
+
+<h3>Agregar Comentario</h3>
+<% if admin_user? %>
+  <p> Los administradores no pueden comentar, debido a algunas restricciones del creador </p>
+<% else%>
+  <%= form_with model: [@pelicula, Comment.new], local: true do |form| %>
     <div class="field">
-      <%= form.label :score, "Calificación (1-5)" %>
-      <%= form.number_field :score, in: 1..5, step: 1, value: user_rating.score %>
+      <%= form.label :content, "Escribe tu comentario" %>
+      <%= form.text_area :content, rows: 4 %>
     </div>
 
     <div class="actions">
-      <%= form.submit user_rating.persisted? ? "Actualizar" : "Enviar" %>
+      <%= form.submit "Agregar Comentario" %>
     </div>
   <% end %>
-  <% else %>
-    <p>Inicia sesión para valorar esta película.</p>
+<%end%>
+
+
+<h3>Comentarios</h3>
+
+<% if @pelicula.comments.any? %>
+  <% @pelicula.comments.order(created_at: :desc).each do |comment| %>
+    <div class="comment">
+      <p><strong><%= comment.user.email %>:</strong> <%= comment.content %></p>
+      
+      <% if comment.user == current_user %>
+        <%= link_to 'Eliminar', pelicula_comment_path(@pelicula, comment), data: {
+        turbo_method: :delete} %>
+      <% end %>
+    </div>
   <% end %>
-</div>
+<% else %>
+  <% if admin_user? %>
+    <p></p>
+  <% else%>
+    <p>Rompe el Hielo bro</p>
+  <%end%>
+<% end %>
+
+
 
 <div class="actions">
   <% if admin_user? %>
@@ -86,5 +127,5 @@
   <% end %>
 
   <%= link_to 'Salir', peliculas_path, class: 'salir-button' %>
-
+  
 </div>

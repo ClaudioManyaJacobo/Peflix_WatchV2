@@ -10,9 +10,10 @@ class Pelicula < ApplicationRecord
     has_and_belongs_to_many :actors
     has_and_belongs_to_many :plataforms
 
-    # Relacion pelicula y usuario y  raiting
+    # Relacion pelicula y usuario y  raiting y comments
     has_many :ratings, dependent: :destroy
     has_many :users, through: :ratings
+    has_many :comments, dependent: :destroy
 
     # Imágenes y videos - EQUI
     has_one_attached :foto
@@ -20,5 +21,9 @@ class Pelicula < ApplicationRecord
 
     def average_rating
         ratings.average(:score).to_f.round(1) if ratings.any?
+    end
+
+    def recent_comments
+        comments.order(created_at: :desc)
     end
 end

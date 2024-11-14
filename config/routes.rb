@@ -9,5 +9,6 @@ Rails.application.routes.draw do
 
   resources :peliculas do
     resources :ratings, only: [:create, :update]
+    resources :comments, only: [:create, :destroy]
   end
 end
