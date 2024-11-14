@@ -1,4 +1,10 @@
 class ActorsController < ApplicationController
+
+    before_action :authenticate_user!        # Verifica que el usuario esté autenticado
+    before_action :authorize_admin           # Restringe el acceso a administradores
+    before_action :set_actor, only: [:show, :edit, :update, :destroy]
+
+
     def index
         @actors = Actor.all
     end
@@ -42,5 +48,18 @@ class ActorsController < ApplicationController
     private
     def actor_params
         params.require(:actor).permit(:name, :url_actor, :photo_actor)
+    end
+
+
+
+    def set_actor
+        @actor = Actor.find(params[:id])
+    end
+
+
+    def authorize_admin
+        unless admin_user?
+          redirect_to root_path, alert: "No tienes permiso para eso."
+        end
     end
 end

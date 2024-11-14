@@ -1,4 +1,8 @@
 class PlataformsController < ApplicationController
+  before_action :authenticate_user!       # Verifica que el usuario esté autenticado
+  before_action :authorize_admin          # Restringe el acceso a administradores
+  before_action :plataform, only: [:show, :edit, :update, :destroy]
+
   def index
     @plataforms = Plataform.all
   end
@@ -46,6 +50,12 @@ class PlataformsController < ApplicationController
 
   def plataform
     @plataform = Plataform.find(params[:id])
+  end
+
+  def authorize_admin
+    unless admin_user?
+      redirect_to root_path, alert: "No tienes permiso para eso."
+    end
   end
 
 end

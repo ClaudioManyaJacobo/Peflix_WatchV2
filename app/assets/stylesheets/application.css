@@ -1,14 +1,109 @@
-/* 
-La importancia de los comentarios en CSS:
+body {
+  color: #ffffff;
+  font-family: 'Helvetica', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-size: cover;
+  background-color: #141414; /* Fondo oscuro de respaldo */
+}
 
-1. Facilitan la comprensión del código: Los comentarios ayudan a otros desarrolladores (o a ti mismo en el futuro) a entender el propósito y la funcionalidad de diferentes partes del código.
+/* Estilo del formulario */
+.login-form {
+  max-width: 90%;
+  max-width: min(400px, 90%);
+  margin: 0 auto;
+  padding: 40px;
+  background: rgba(0, 0, 0, 0.8); /* Fondo más oscuro */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-2. Mejoran la mantenibilidad: Con comentarios claros, es más fácil realizar cambios y actualizaciones en el código sin romper funcionalidades existentes.
+/* Estilo del título */
+.login-title {
+  text-align: center;
+  font-size: clamp(2.5rem, 5vw, 3rem);
+  font-family: 'Bebas Neue', sans-serif; /* Tipografía más parecida a la de Netflix */
+  color: #e50914; /* Rojo característico de Netflix */
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
 
-3. Documentación: Los comentarios actúan como una forma de documentación dentro del código, explicando decisiones de diseño y proporcionando contexto adicional.
+/* Estilo de las etiquetas */
+.login-label {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #ddd; /* Color claro para las etiquetas */
+}
 
-4. Depuración: Durante el proceso de depuración, los comentarios pueden ayudar a identificar rápidamente secciones específicas del código que pueden estar causando problemas.
+/* Estilo de los campos de texto */
+.form-control {
+  border-radius: 5px;
+  border: 2px solid #333; /* Bordes oscuros para dar un look limpio */
+  background-color: #333; /* Fondo oscuro para los campos de entrada */
+  color: #fff;
+  margin-bottom: 20px;
+  padding: 12px;
+  font-size: 1.1rem;
+  width: 100%;
+}
 
-5. Colaboración: En proyectos de equipo, los comentarios son esenciales para asegurar que todos los miembros del equipo entiendan el código y puedan trabajar de manera efectiva juntos.
-*/
+/* Estilo de los botones */
+.btn-cinema {
+  width: 100%;
+  background-color: #e50914; /* Rojo de Netflix */
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
 
+.btn-cinema:hover {
+  background-color: #f40612; /* Rojo más brillante en el hover */
+  transform: scale(1.05);
+}
+
+/* Estilo del checkbox */
+.form-check-label {
+  color: #bbb;
+  font-size: 0.9rem;
+}
+
+.form-check-input {
+  margin-right: 10px;
+}
+
+/* Enlaces */
+a {
+  color: #e50914; /* Rojo de Netflix */
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 600px) {
+  .login-form {
+    padding: 30px;
+  }
+
+  .login-title {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+  }
+
+  .form-control,
+  .btn-cinema {
+    font-size: 1rem;
+    padding: 10px;
+  }
+}

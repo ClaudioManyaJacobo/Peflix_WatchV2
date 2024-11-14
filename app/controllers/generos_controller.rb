@@ -1,6 +1,8 @@
 class GenerosController < ApplicationController
     before_action :set_genero, only: [:show, :edit, :update, :destroy]
-  
+    before_action :authenticate_user!  # Verifica que el usuario esté autenticado
+    before_action :authorize_admin     # Restringe el acceso a administradores
+
     # GET /generos
     def index
       @generos = Genero.all
@@ -56,5 +58,13 @@ class GenerosController < ApplicationController
     def genero_params
       params.require(:genero).permit(:nombre)
     end
+
+
+    def authorize_admin
+      unless admin_user?
+        redirect_to peliculas_path, alert: "No tienes permiso para realizar esta acción."
+      end
+    end
+
   end
   

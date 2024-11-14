@@ -37,7 +37,7 @@
 
   <div class="field">
     <%= form.label :plataform_ids, "Platafromas" %>
-    <%= form.collection_select :plataform_ids, Plataform.all, :id, :name_p, { prompt: "Selecciona Generos" }, { multiple: true } %>
+    <%= form.collection_select :plataform_ids, Plataform.all, :id, :name_p, { prompt: "Selecciona PLatafromas" }, { multiple: true } %>
   </div>
 
   <div class="field">
@@ -55,5 +55,10 @@
     <%= form.file_field :video, class: 'form-control' %>
   </div>
 
-  <%= form.submit %>
+  <!-- Botón de acción con texto condicional -->
+  <div class="form-actions">
+    <%= form.submit @pelicula.new_record? ? 'Guardar' : 'Actualizar', class: 'btn btn-primary' %>
+  </div>
+
+
 <% end %>

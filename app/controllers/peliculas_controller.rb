@@ -1,8 +1,8 @@
 class PeliculasController < ApplicationController
     before_action :set_pelicula, only: [:show, :edit, :update, :destroy]
   
-    before_action :authenticate_user!, only: [:index, :show] # Permitir a todos los usuarios ver las películas
-    before_action :authorize_admin, except: [:index, :show] # Restringir las acciones CRUD a administradores
+    before_action :authenticate_user!, only: [:index, :show] 
+    before_action :authorize_admin, except: [:index, :show] 
   
     # Acción para mostrar todas las películas
     def index
@@ -68,5 +68,6 @@ class PeliculasController < ApplicationController
       redirect_to peliculas_path, alert: "No tienes permiso para realizar esta acción."
     end
   end
+
 end
   

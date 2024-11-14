@@ -1,6 +1,8 @@
 <h1>Agregar Nueva Película</h1>
 <% if admin_user? %>
-<%= render 'form'%>
+<div class="edit-container">
+    <%= render 'form' %>
+</div>
 <% else %>
   <p>No tienes permiso para esto</p>
 <% end %>

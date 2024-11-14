@@ -13,19 +13,23 @@
     <% end %>
     </p>
 
+
     <p><strong>CAST:</strong>
+    <div class="actor-list">
     <% @pelicula.actors.each do |actor| %>
-      <div class="actor-info">
-        <% if actor.photo_actor.attached? %>
-          <%= image_tag actor.photo_actor, class: 'actor-photo', size: '50x50' %>
-        <% end %>
-        <span><%= actor.name %></span>
-        <% if actor != @pelicula.actors.last %>
-          <span> </span>
-        <% end %>
-      </div>
-    <% end %>
+        <div class="actor-info">
+          <% if actor.photo_actor.attached? %>
+            <%= image_tag actor.photo_actor, class: 'actor-photo', size: '50x50' %>
+          <% end %>
+          <span><%= actor.name %></span>
+          <% if actor != @pelicula.actors.last %>
+            <span> </span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
     </p>
+
 
     <!-- Nueva sección para plataformas -->
     <p><strong>Plataformas:</strong>
@@ -55,12 +59,14 @@
     </div>
   <% end %>
 </div>
+
+<div class="actions">
 <% if admin_user? %>
-  <%= link_to 'Editar', edit_pelicula_path(@pelicula), class: 'btn btn-warning' %>
+  <%= link_to 'Editar', edit_pelicula_path(@pelicula), class: 'btn btn-edit' %>
   <%= form_with(model: @pelicula, method: :delete, local: true) do %>
-    <%= submit_tag 'Eliminar', class: 'btn btn-danger', data: { confirm: '¿Estás seguro de que deseas eliminar esta película?' } %>
+    <%= submit_tag 'Eliminar', class: 'btn btn-delete', data: { confirm: '¿Estás seguro de que deseas eliminar esta película?' } %>
   <% end %>
+
 <% end %>
-
 <%= link_to 'Salir', peliculas_path, class: 'salir-button' %>
-
+</div>

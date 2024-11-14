@@ -6,4 +6,4 @@ class ApplicationController < ActionController::Base
     end
   
     helper_method :admin_user? # Hacer que admin_user? esté disponible en las vistas
-  end
+end
