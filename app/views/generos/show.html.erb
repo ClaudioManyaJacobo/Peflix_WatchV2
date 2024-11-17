@@ -7,6 +7,6 @@
 
 <%= link_to 'Editar', edit_genero_path(@genero), class: 'btn btn-warning' %>
 <%= form_with(model: @genero, method: :delete, local: true) do %>
-  <%= submit_tag 'Eliminar', class: 'btn btn-danger', data: { confirm: '¿Estás seguro de que deseas eliminar este genero?' } %>
+  <%= submit_tag 'Eliminar' %>
 <% end %>
 <%= link_to 'Volver a la lista', generos_path, class: 'btn btn-secondary' %>

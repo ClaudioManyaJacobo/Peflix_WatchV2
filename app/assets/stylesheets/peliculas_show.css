@@ -1,0 +1,320 @@
+/* Contenedor Principal */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+}
+
+.pelicula-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #e50909;
+  text-align: center;           /* Centra el texto dentro del contenedor */
+  margin: 20px 0;               /* Espacio arriba y abajo, sin desalinearlo */
+}
+
+
+.pelicula-details, .right-column-content {
+  background-color: #f9f9f9af;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Columna Izquierda */
+.left-column {
+  text-align: center;
+}
+
+.left-column .pelicula-img {
+  /*2 cm mas abajo*/
+  margin-top: 2cm;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  margin-bottom: 20px;
+}
+
+.pelicula-details p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 10px 0;
+}
+
+.pelicula-details strong {
+  color: #333;
+}
+
+.pelicula-details span {
+  display: inline-block;
+  color: #110f0f;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  margin-right: 5px;
+}
+
+/* Actores y Plataformas */
+.actor-list, .plataforma-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.actor-info, .plataforma-info {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.actor-photo, .plataform-photo {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.actor-info span, .plataforma-info span {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* Columna Derecha */
+.right-column-content h2 {
+  font-size: 1.8rem;
+  color: #e50909;
+  margin-bottom: 15px;
+}
+
+.right-column-content h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-top: 30px;
+}
+
+.synopsis {
+  font-size: 1.1rem;
+  color: #555;
+  margin: 10px 0;
+}
+
+/* Valoración y Comentarios */
+.field {
+  margin: 15px 0;
+}
+
+.field label {
+  font-size: 1rem;
+  color: #333;
+}
+
+.field input[type="number"], .field textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 1rem;
+  color: #333;
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+/* Estilo para el contenedor de acciones */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centra los botones */
+  gap: 15px;              /* Espaciado entre botones */
+  margin-top: 20px;
+}
+
+/* Estilo para el botón Editar */
+.btn-edit {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff; /* Azul */
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-edit:hover {
+  background-color: #0056b3; /* Azul oscuro al pasar el cursor */
+  transform: scale(1.05);
+}
+
+
+.comment {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment strong {
+  color: #e50909;
+}
+
+.comment p {
+  margin: 5px 0;
+}
+
+.comment a {
+  color: #e50909;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.comment a:hover {
+  text-decoration: underline;
+}
+
+/* Video de la Película */
+.pelicula-video {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.pelicula-video-tag {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .pelicula-title {
+    text-align: center;
+  }
+}
+
+/* Estilo para el contenedor de botones */
+.button-actions {
+  display: flex;
+  justify-content: center; /* Centra los botones horizontalmente */
+  align-items: center;    /* Alinea verticalmente */
+  gap: 15px;              /* Espaciado uniforme entre botones */
+  margin-top: 20px;
+}
+
+/* Estilo para el botón de edición */
+.action-edit {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #1d72b8; /* Azul */
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.action-edit:hover {
+  background-color: #145a86; /* Azul oscuro al pasar el cursor */
+  transform: scale(1.05);
+}
+
+/* Estilo para el botón de eliminación */
+.action-delete {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #b81d1d; /* Rojo */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.action-delete:hover {
+  background-color: #861414; /* Rojo oscuro al pasar el cursor */
+  transform: scale(1.05);
+}
+
+/* Estilo para el botón de salir */
+.action-exit {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #4b4b4b; /* Gris */
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.action-exit:hover {
+  background-color: #2e2e2e; /* Gris oscuro al pasar el cursor */
+  transform: scale(1.05);
+}
+
+
+/* Contenedor de acciones */
+.rating-actions,
+.comment-actions {
+  margin-top: 15px;
+}
+
+/* Botón de Enviar/Actualizar Valoración */
+.rating-submit {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #1d72b8; /* Azul */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.rating-submit:hover {
+  background-color: #145a86; /* Azul oscuro al pasar el cursor */
+  transform: scale(1.05);
+}
+
+/* Botón de Agregar Comentario */
+.comment-submit {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #28a745; /* Verde */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.comment-submit:hover {
+  background-color: #218838; /* Verde oscuro al pasar el cursor */
+  transform: scale(1.05);
+}

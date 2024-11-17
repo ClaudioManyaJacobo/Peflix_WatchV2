@@ -8,9 +8,6 @@ ruby "3.3.6"
 gem 'mutex_m'
 gem 'bigdecimal'
 
-
-
-
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.8", ">= 7.0.8.6"
 

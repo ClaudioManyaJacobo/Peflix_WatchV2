@@ -1,63 +1,61 @@
-<%= form_with model: @pelicula, local: true do |form| %>
-  <%@pelicula.errors.full_messages.each do |msg| %>
-    <div>
+<%= form_with model: @pelicula, local: true, html: { class: 'movie-form-container' } do |form| %>
+  <% @pelicula.errors.full_messages.each do |msg| %>
+    <div class="movie-form-error">
       <%= msg %>
     </div>
   <% end %>
-  
-  <div class="form-group">
-    <%= form.label :titulo %>
-    <%= form.text_field :titulo, class: 'form-control' %>
+
+  <div class="movie-form-group">
+    <%= form.label :titulo, 'Título', class: 'movie-form-label' %>
+    <%= form.text_field :titulo, class: 'movie-form-input' %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :anio %>
-    <%= form.number_field :anio, class: 'form-control' %>
+  <div class="movie-form-group">
+    <%= form.label :anio, 'Año', class: 'movie-form-label' %>
+    <%= form.number_field :anio, class: 'movie-form-input' %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :sinopsis %>
-    <%= form.text_area :sinopsis, class: 'form-control' %>
+  <div class="movie-form-group">
+    <%= form.label :sinopsis, 'Sinopsis', class: 'movie-form-label' %>
+    <%= form.text_area :sinopsis, class: 'movie-form-input' %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :duracion %>
-    <%= form.number_field :duracion, class: 'form-control' %>
+  <div class="movie-form-group">
+    <%= form.label :duracion, 'Duración', class: 'movie-form-label' %>
+    <%= form.number_field :duracion, class: 'movie-form-input' %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :director %>
-    <%= form.text_field :director, class: 'form-control' %>
+  <div class="movie-form-group">
+    <%= form.label :director, 'Director', class: 'movie-form-label' %>
+    <%= form.text_field :director, class: 'movie-form-input' %>
   </div>
 
-  <div class="field">
-    <%= form.label :genero_ids, "Generos" %>
-    <%= form.collection_select :genero_ids, Genero.all, :id, :nombre, { prompt: "Selecciona Generos" }, { multiple: true } %>
+  <div class="movie-form-group">
+    <%= form.label :genero_ids, 'Géneros', class: 'movie-form-label' %>
+    <%= form.collection_select :genero_ids, Genero.all, :id, :nombre, { prompt: 'Selecciona Géneros' }, { multiple: true, class: 'movie-form-multi-select' } %>
   </div>
 
-  <div class="field">
-    <%= form.label :plataform_ids, "Platafromas" %>
-    <%= form.collection_select :plataform_ids, Plataform.all, :id, :name_p, { prompt: "Selecciona PLatafromas" }, { multiple: true } %>
+  <div class="movie-form-group">
+    <%= form.label :plataform_ids, 'Plataformas', class: 'movie-form-label' %>
+    <%= form.collection_select :plataform_ids, Plataform.all, :id, :name_p, { prompt: 'Selecciona Plataformas' }, { multiple: true, class: 'movie-form-multi-select' } %>
   </div>
 
-  <div class="field">
-    <%= form.label :actor_ids, "Actores" %>
-    <%= form.collection_select :actor_ids, Actor.all, :id, :name, { prompt: "Selecciona Actores" }, { multiple: true } %>
+  <div class="movie-form-group">
+    <%= form.label :actor_ids, 'Actores', class: 'movie-form-label' %>
+    <%= form.collection_select :actor_ids, Actor.all, :id, :name, { prompt: 'Selecciona Actores' }, { multiple: true, class: 'movie-form-multi-select' } %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :foto %>
-    <%= form.file_field :foto, class: 'form-control' %>
+  <div class="movie-form-group">
+    <%= form.label :foto, 'Foto', class: 'movie-form-label' %>
+    <%= form.file_field :foto, class: 'movie-form-input' %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :video %>
-    <%= form.file_field :video, class: 'form-control' %>
+  <div class="movie-form-group">
+    <%= form.label :video, 'Video', class: 'movie-form-label' %>
+    <%= form.file_field :video, class: 'movie-form-input' %>
   </div>
 
-  <!-- Botón de acción con texto condicional -->
-  <div class="form-actions">
-    <%= form.submit @pelicula.new_record? ? 'Guardar' : 'Actualizar', class: 'btn btn-primary' %>
+  <div class="movie-form-actions">
+    <%= form.submit @pelicula.new_record? ? 'Guardar' : 'Actualizar', class: 'movie-form-button' %>
   </div>
-  
 <% end %>

@@ -1,0 +1,95 @@
+/* Estilo para el título principal */
+h1 {
+    font-size: 2rem;                    /* Tamaño mediano */
+    font-weight: 600;                   /* Semi-negrita para buena definición */
+    color: #333;                        /* Color oscuro neutro */
+    text-align: center;
+    margin-top: 2cm;                    /* Espaciado superior ajustado */
+    margin-bottom: 20px;                /* Espaciado inferior */
+    font-family: 'Arial', sans-serif;   /* Fuente clara y profesional */
+    letter-spacing: 1px;
+}
+
+/* Contenedor principal de las películas */
+.peliculas-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Cada elemento individual de la película */
+.pelicula-item {
+    width: 200px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    background-color: #f9f9f9;
+    text-align: center;
+    padding: 15px;
+}
+
+.pelicula-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Imagen de la película */
+.pelicula-img-container {
+    overflow: hidden;
+    border-radius: 8px;
+    width: 100%;
+    height: 250px;                      /* Tamaño uniforme para todas las imágenes */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pelicula-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;                   /* Asegura que la imagen se adapte sin distorsionarse */
+    transition: transform 0.3s;
+}
+
+.pelicula-img-container:hover .pelicula-img {
+    transform: scale(1.05);
+}
+
+/* Título de cada película */
+.pelicula-item h3 {
+    font-size: 1.2rem;
+    color: #444;
+    margin: 10px 0;
+    font-weight: bold;
+    min-height: 40px;                    /* Altura mínima para alinear todos los títulos */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Botón para agregar una nueva película */
+.add-pelicula {
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.add-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.add-button:hover {
+    background-color: #218838;
+}

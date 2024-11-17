@@ -1,35 +1,49 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= content_for?(:title) ? yield(:title) : "Peliculizate Watch" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= favicon_link_tag 'favicon.png', rel: 'icon', type: 'image/png', id: 'dynamic-favicon' %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-    <%= stylesheet_link_tag 'peliculas', media: 'all' %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Roboto:wght@400&display=swap" rel="stylesheet">
-  </head>
+<head>
+  <title><%= content_for?(:title) ? yield(:title) : "Peliculizate Watch" %></title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application', defer: true %>
+  <%= favicon_link_tag 'favicon.png', rel: 'icon', type: 'image/png', id: 'dynamic-favicon' %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
   
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+  <%= stylesheet_link_tag 'peliculas_show', media: 'all' %>
+  <%= stylesheet_link_tag 'peliculas_index', media: 'all' %>
+  <%= stylesheet_link_tag 'peliculas_form', media: 'all' %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 
-    <nav class="navbar-text float-right">
-      <% if user_signed_in? %>
-        Logged in as <strong><%= current_user.email %></strong>.
-        <%= link_to "Edit profile", edit_user_registration_path, class: "navbar-link" %> |
-        <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "navbar-link" %>
-      <% else %>
-        <%= link_to "Sign up", new_user_registration_path, class: "navbar-link" %> |
-        <%= link_to "Login", new_user_session_path, class: "navbar-link" %>
-      <% end %>
-    </nav>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Roboto:wght@400&display=swap" rel="stylesheet">
+</head>
 
-    <%= yield %>
-  </body>
+<body>
+  <!-- Barra de navegación -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <!-- Logo o nombre de la aplicación -->
+      <a href="/" class="navbar-logo">Peliculizate Watch</a>
+
+      <!-- Opciones de usuario -->
+      <div class="navbar-user">
+        <% if user_signed_in? %>
+          <span>Bienvenido, <strong><%= current_user.email %></strong></span>
+          <%= link_to "Editar perfil", edit_user_registration_path, class: "navbar-link" %> |
+          <%= link_to "Cerrar sesión", destroy_user_session_path, data: { turbo_method: :delete }, class: "navbar-link" %>
+        <% else %>
+          <%= link_to "Registrarse", new_user_registration_path, class: "navbar-link" %> |
+          <%= link_to "Iniciar sesión", new_user_session_path, class: "navbar-link" %>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenido principal -->
+  <div class="main-content">
+    <%= yield %> <!-- Contenido específico de cada vista -->
+  </div>
+
+</body>
 </html>
